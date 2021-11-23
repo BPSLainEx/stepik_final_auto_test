@@ -1,6 +1,6 @@
 from .base_page import BasePage
 from .locators import LoginPageLocators
-
+from .locators import BasePageLocators
 class LoginPage(BasePage):
     def should_be_login_page(self):
         self.should_be_login_url()
@@ -10,7 +10,6 @@ class LoginPage(BasePage):
     def should_be_login_url(self):
         # реализуйте проверку на корректный url адрес
         assert (self.url.find('login') != -1), "Login is url not found"
-
     def should_be_login_form(self):
         # реализуйте проверку, что есть форма логина
         self.is_element_present(*LoginPageLocators.login_form), "Login form is not found"
