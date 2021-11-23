@@ -1,7 +1,7 @@
 import time
-
 from .base_page import BasePage
 from .locators import ProductPageLocators
+from .locators import  BasePageLocators
 import pytest
 class ProductPage(BasePage):
     def press_button_add_to_basket(self):
@@ -37,3 +37,11 @@ class ProductPage(BasePage):
         product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
         # Проверяем, что цена товара присутствует в сообщении со стоимостью корзины
         assert product_price == message_basket_total, "No product price in the message"
+
+    def test_message_disappeared_after_adding_product_to_basket(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
+    def go_to_login_page(self):
+        link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
+        link.click()
+        return ProductPage(browser=self.browser, url=self.browser.current_url)
