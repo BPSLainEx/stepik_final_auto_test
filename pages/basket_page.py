@@ -1,6 +1,6 @@
 from .base_page import BasePage
 from .locators import BasketPageLocators
-import pytest
+import pytest 
 class BasketPage(BasePage):
     def press_to_button_basket(self):
         basket = self.browser.find_element(*BasketPageLocators.BASKET_PAGE)
